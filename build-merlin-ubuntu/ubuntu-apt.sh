@@ -17,4 +17,7 @@ sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y inst
 ### Install other programs
 sudo apt-get -y install lzip patchelf
 
+sudo ln -s /usr/bin/automake-1.16 /usr/bin/automake-1.15
+sudo ln -s /usr/bin/aclocal-1.16 /usr/bin/aclocal-1.15
+
 echo "linux reboot required"
