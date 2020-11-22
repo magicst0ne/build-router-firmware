@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
 	memset(&listen_addr, 0, sizeof(listen_addr));
 	listen_addr.sin_family = AF_INET;
 	listen_addr.sin_port = htons(atoi(argv[3]));
-	listen_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+	listen_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	i = 1;
 	setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &i, sizeof(i));
 	if (bind(listen_sock, (struct sockaddr *)&listen_addr, sizeof(listen_addr)) < 0) {
@@ -295,6 +295,7 @@ int main(int argc, char *argv[])
 	inet_aton(argv[4], &upstream_addr.sin_addr);
 	
 	/* TODO: Put all of the below code in several forks all listening on the same sock. */
+
 	if (!getenv("NO_DAEMONIZE")) {
 		if (daemon(0, 0) < 0) {
 			perror("daemon");
